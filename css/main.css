@@ -176,6 +176,10 @@ h1 {
     float: left;
     width: 2em;
 }
+.skills-left i{
+    float: left;
+    font-size: 2em;
+}
 .skills-right {
     margin-left: 70%;
     height: 100%;
