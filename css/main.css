@@ -161,9 +161,10 @@ h1 {
 .item-right {
     margin-left: 72%;
     height: 8em;
+    overflow: hidden;
 }
 .item-image {
-    height: 6em;
+    height: 8em;
 }
 .skills {
     width: 100%;
