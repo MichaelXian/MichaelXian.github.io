@@ -16,6 +16,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	font-size: 100%;
 	vertical-align: baseline;
 	background: transparent;
+    font-family: sans-serif;
 }
 body {
 	line-height: 1;
@@ -54,7 +55,6 @@ table {
 
 h1 {
     font-size: 7.5em;
-    font-family: sans-serif;
 }
 .center {
     text-align: center;
