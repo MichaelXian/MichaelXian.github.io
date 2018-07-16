@@ -3,13 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <title>Michael Xian | Home</title>
-        <script src="jquery-1.12.4.min.js"> </script>
-        <link rel="stylesheet" href="/css/main.css">
+        <script src="../../../javascript/jquery-3.3.1.min.js"> </script>
+        <link rel="shortcut icon" href="../../../assets/icons/siteIcon.png">
+        <link rel="stylesheet" href="../../../css/subpage.css">
+        <link rel="stylesheet" href="../../../css/default.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <script src="../../../javascript/highlight.pack.js"></script>
+        <script src="../../../javascript/highlightjs-line-numbers.min.js"></script>
+        <script>hljs.initHighlightingOnLoad(); hljs.initLineNumbersOnLoad();</script>
+        
     </head>
     
     <body id="body">
         <section id="header" class="center container">
-         <a href="index.html" class="blue">
+         <a href="../../../index.html" class="blue">
         <h1 class="container-left blue">
             Michael 
             <br>
@@ -20,7 +27,7 @@
             <a href="mailto:michaelkxian@gmail.com">
             <div class="infoItem blue">
                 <div>
-                   <img class="iconLarge" src="assets/icons/email-icon.jpg">
+                    <i class="fas fa-envelope icon-large color-black"></i>
                     <p> michaelkxian@gmail.com </p>
                 </div>
             </div>
@@ -28,15 +35,248 @@
             <a href="https://github.com/MichaelXian" target="_blank">
             <div class="infoItem blue">
                 <div>
-                   <img class="iconLarge" src="assets/icons/octocat.png">
+                    <i class="fab fa-github icon-large color-black"></i>
                     <p>Github (MichaelXian)</p>
+                </div>
+            </div>
+            </a>
+            <a href="https://keybase.io/mkx" target="_blank">
+            <div class="infoItem blue">
+                <div>
+                    <i class="fab fa-keybase icon-large color-black"></i>
+                    <p>Keybase (mkx)</p>
                 </div>
             </div>
             </a>
         </div>
         </section>
+        <br>
+        <br>
+        <a href="Auto%20Robocraft.scpt" download><button class="brown download">Download [<i class="fas fa-download"></i>]</button></a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button id="autoRobocraft" class="file blue" onClick="toggleFile('#autoRobocraft')">Auto Robocraft.scpt <i class="fas fa-chevron-down"></i> <i class="fas fa-chevron-up"> </i></button> 
+        <pre id="autoRobocraftCode"><code class="color-black">
+    property xRatio : 0
+    property yRatio : 0
 
-        
-        
+    tell application "Finder"
+        set screenRes to bounds of window of desktop
+        set screenResX to item 3 of screenRes
+        set screenResY to item 4 of screenRes
+    end tell
+
+    -- set ratios that coordinates will be multiplied to
+
+    set xRatio to screenResX / 1920
+    set yRatio to screenResY / 1080
+    property endGame : {1000, 640}
+    property endGame2 : {1000, 620}
+    property endGame3 : {1000, 600}
+    property endGame4 : {1000, 660}
+    property endGame5 : {1000, 680}
+    property endGame6 : {1000, 580}
+    property endGame7 : {1000, 560}
+    property endGame8 : {1000, 540}
+    property endGame9 : {1000, 520}
+    property endGame10 : {1000, 500}
+    property xpScreen : {1000, 100}
+    property chest : {900, 600}
+    property collect : {702, 1020}
+    property play : {955, 45}
+    property battleArena : {540, 930}
+    property respawn : {960, 585}
+    property pass : {200, 160}
+    property robocraft : "/Users/Michael/Library/Application Support/Steam/SteamApps/common/Robocraft/Robocraft.app"
+    property resets : 0
+    try
+        repeat
+            repeat 40 times
+                try
+                    --click(play)
+                    tell application robocraft to activate
+                    tell application "System Events"
+
+                        repeat 10 times
+                            delay 0.1
+
+                            keystroke "g"
+                            delay 1
+                            keystroke "p"
+                            end repeat
+                    end tell
+                    --click(battleArena)
+                    delay 30
+                    click(endGame)
+                    click(endGame2)
+                    click(endGame3)
+                    click(endGame4)
+                    click(endGame5)
+                    click(endGame6)
+                    click(endGame7)
+                    click(endGame8)
+                    click(endGame9)
+                    click(endGame10)
+                    delayP(30)
+                    click(xpScreen)
+                    delayP(7)
+                    click(chest)
+                    delayP(7)
+                    click(collect)
+                    delayP(5)
+                on error number -128
+                    error -resets
+                    quitPrep()
+                end try
+            end repeat
+            relaunchRobo()
+            set resets to resets + 1
+        end repeat
+    on error number -128
+        quitPrep()
+    end try
+    end
+    on click(coordinate)
+        try
+            tell application robocraft to activate
+            delay 1
+        end try
+        set item 1 of coordinate to ((item 1 of coordinate) * xRatio)
+        set item 2 of coordinate to ((item 2 of coordinate) * yRatio)
+        try
+            tell application "Extra Suites"
+                ES move mouse coordinate
+                ES click mouse with double click
+                quit
+            end tell
+        end try
+        delay 0.1
+        tell application "Extra Suites" to launch
+        delay 0.2
+
+
+
+    end click
+
+    tell application "Extra Suites" to quit
+
+
+    on delayP(x)
+        try
+            tell application robocraft to activate
+            delay 0.1
+        end try
+        try
+            tell application "System Events"
+                try
+                    repeat x times
+                        try
+                            repeat 10 times
+                                try
+                                    keystroke "z"
+                                    delay 0.05
+                                    keystroke "j"
+                                    delay 0.05
+                                    keystroke "w"
+                                end try
+                            end repeat
+                        end try
+                    end repeat
+                end try
+            end tell
+        end try
+    end delayP
+
+    on playGame(num)
+        repeat num times
+            moveBot()
+            attack()
+        end repeat
+    end playGame
+    on moveBot()
+        tell application "System Events"
+            delay 0.01
+            keystroke "w"
+            delay 0.01
+            keystroke "q"
+            delay 0.01
+            (* set x to (random number from 1 to 2)
+            keystroke (item x of {"l", "j"}) *)
+            keystroke "j"
+        end tell
+
+    end moveBot
+
+    on menuToggle()
+        try
+            tell application robocraft to activate
+            delay 0.1
+        end try
+        tell application "System Events"
+            key code 53
+        end tell
+    end menuToggle
+    on attack()
+        tell application "Extra Suites"
+            delay 0.01
+            ES click mouse with double click
+        end tell
+    end attack
+
+    on relaunchRobo()
+        try
+            do shell script "killall Robocraft"
+        end try
+        delay 10
+        tell application robocraft to launch
+        delay 10
+        tell application robocraft to activate
+        delay 3
+        login(5)
+        delay 60
+    end relaunchRobo
+
+    on login(x)
+        repeat x times
+            click(pass)
+            tell application "System Events" to keystroke return
+        end repeat
+    end login
+
+    on quitPrep()
+        tell application "Extra Suites" to quit
+        tell application "System Events" to quit
+        tell application "Extra Suites" to launch
+        tell application "System Events" to launch
+        click({0, 0})
+        tell application "System Events" to keystroke "a"
+        resets
+        quit
+    end quitPrep</code></pre>
+        <script>
+            $(".fa-chevron-up").hide();
+            
+            files = new Map();
+            files.set("#autoRobocraft",false);
+            
+            function toggleFile(id) {
+                files.set(id, !files.get(id));
+                var toHide = files.get(id);
+                
+                 if (toHide) {
+                    $(id + "Code").hide(500);
+                    $(id + " .fa-chevron-down").hide();
+                    $(id + " .fa-chevron-up").show();
+                } else {
+                    $(id + "Code").show(500);
+                    $(id + " .fa-chevron-down").show();
+                    $(id + " .fa-chevron-up").hide();
+                } 
+            }
+        </script>
     </body>
 </html>
