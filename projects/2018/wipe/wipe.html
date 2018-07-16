@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Michael Xian | Home</title>
+        <script src="../../../javascript/jquery-3.3.1.min.js"> </script>
+        <link rel="shortcut icon" href="../../../assets/icons/siteIcon.png">
+        <link rel="stylesheet" href="../../../css/subpage.css">
+        <link rel="stylesheet" href="../../../css/default.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <script src="../../../javascript/highlight.pack.js"></script>
+        <script src="../../../javascript/highlightjs-line-numbers.min.js"></script>
+        <script>hljs.initHighlightingOnLoad(); hljs.initLineNumbersOnLoad();</script>
+        
+    </head>
+    
+    <body id="body">
+        <section id="header" class="center container">
+         <a href="../../../index.html" class="blue">
+        <h1 class="container-left blue">
+            Michael 
+            <br>
+            Xian
+            </h1>
+        </a>
+        <div class="container-right background-blue">
+            <a href="mailto:michaelkxian@gmail.com">
+            <div class="infoItem blue">
+                <div>
+                    <i class="fas fa-envelope icon-large color-black"></i>
+                    <p> michaelkxian@gmail.com </p>
+                </div>
+            </div>
+            </a>
+            <a href="https://github.com/MichaelXian" target="_blank">
+            <div class="infoItem blue">
+                <div>
+                    <i class="fab fa-github icon-large color-black"></i>
+                    <p>Github (MichaelXian)</p>
+                </div>
+            </div>
+            </a>
+            <a href="https://keybase.io/mkx" target="_blank">
+            <div class="infoItem blue">
+                <div>
+                    <i class="fab fa-keybase icon-large color-black"></i>
+                    <p>Keybase (mkx)</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        </section>
+        <br>
+        <br>
+        <a href="Wipe.zip" download><button class="brown download">Download [<i class="fas fa-download"></i>]</button></a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button id="wipe" class="file blue" onClick="toggleFile('#wipe')">Wipe.sh (Third and best iteration)<i class="fas fa-chevron-down"></i> <i class="fas fa-chevron-up"> </i></button> 
+        <pre id="wipeCode"><code class="color-black">
+    #!/bin/bash
+    if  [ -z "$1" ]; then
+        echo "Please input files to be wiped"
+        exit 0
+    fi
+    START=$(date +%s)
+    echo "Warning: wiping files irrecoverably"
+    for FILE1 in "$@"
+    do
+        if [ ! -f $FILE1 ]; then
+            continue
+        fi
+        #find size of file
+        SIZE=$(wc -c <"$FILE1")
+        if [ "$SIZE" -eq 0 ]; then
+            continue
+        fi
+        echo -e "\r$FILE1"
+        for i in {0..5}
+        #wipe 5 times
+        do
+            #fill file with 0s
+            dd if=/dev/zero of="$FILE1" bs="$SIZE" count=1
+        done
+        #unlink file after
+        rm "$FILE1"
+    done
+        echo -en "\rDone     \n"
+        END=$(date +%s)
+        ELAPSED=$(($END-$START))
+        echo "$ELAPSED second(s) passed"
+</code></pre>
+        <button id="newWipe" class="file blue" onClick="toggleFile('#newWipe')">New Wipe.sh (second iteration)<i class="fas fa-chevron-down"></i> <i class="fas fa-chevron-up"> </i></button> 
+        <pre id="newWipeCode"><code>
+            #!/bin/bash
+    SIXTEENMEGABYTES="\x00"
+    for a in {0..24}
+    do
+        SIXTEENMEGABYTES=$SIXTEENMEGABYTES$SIXTEENMEGABYTES
+    done
+
+    if  [ -z "$1" ]; then
+        echo "Please input files to be wiped"
+        exit 0
+    fi
+    START=$(date +%s)
+    echo "Warning: wiping files irrecoverably"
+    for FILE1 in "$@"
+    do
+        SIZE=$(wc -c <"$FILE1")
+        REPS=$(($SIZE/16777216+1)) #Calculate reps needed
+        echo -e "\r$FILE1"
+        i="0"
+    while [ $i -lt $SIZE ]
+            do
+                echo -ne $SIXTEENMEGABYTES | dd conv=notrunc bs=1 count=16777216 seek="$i" of="$FILE1" 2> /dev/null
+                #write 16 MBs
+                i="$(($i + 16777216))" #move pointer by 16 MBs
+                echo -en "\r$(($i * 100 / $SIZE))%"
+            done
+    #    rm "$FILE1"
+    done
+        echo -en "\rDone     \n"
+        END=$(date +%s)
+        ELAPSED=$(($END-$START))
+        echo "$ELAPSED second(s) passed"
+
+        
+        </code></pre>
+         <button id="wipeTxt" class="file blue" onClick="toggleFile('#wipeTxt')">Wipe.sh.txt (first iteration)<i class="fas fa-chevron-down"></i> <i class="fas fa-chevron-up"> </i></button> 
+        <pre id="wipeTxtCode">
+        <code>
+            #!/bin/bash
+    MEGABYTE="\x00"
+    for a in {0..20}
+    do
+        MEGABYTE=$MEGABYTE$MEGABYTE
+    done
+
+    if  [ -z "$1" ]; then
+        echo "Please input files to be wiped"
+        exit 0
+    fi
+    START=$(date +%s)
+    echo "Warning: wiping files irrecoverably"
+    for FILE1 in "$@"
+    do
+        SIZE=$(wc -c <"$FILE1")
+        REPS=$(($SIZE/1048576+1))
+        echo -e "\r$FILE1"
+        i="0"
+    while [ $i -lt $SIZE ]
+            do
+                echo -ne $MEGABYTE | dd conv=notrunc bs=1 count=1048576 seek="$i" of="$FILE1" 2> /dev/null
+                i="$(($i + 1048576))"
+                echo -en "\r$(($i * 100 / $SIZE))%"
+            done
+        rm "$FILE1"
+    done
+        echo -en "\rDone     \n"
+        END=$(date +%s)
+        ELAPSED=$(($END-$START))
+        echo "$ELAPSED second(s) passed"
+
+        </code>
+        </pre>
+        <script>
+            $(".fa-chevron-up").hide();
+            
+            files = new Map();
+            files.set("#autoRobocraft",false);
+            
+            function toggleFile(id) {
+                files.set(id, !files.get(id));
+                var toHide = files.get(id);
+                
+                 if (toHide) {
+                    $(id + "Code").hide(500);
+                    $(id + " .fa-chevron-down").hide();
+                    $(id + " .fa-chevron-up").show();
+                } else {
+                    $(id + "Code").show(500);
+                    $(id + " .fa-chevron-down").show();
+                    $(id + " .fa-chevron-up").hide();
+                } 
+            }
+        </script>
+    </body>
+</html>
