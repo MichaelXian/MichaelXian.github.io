@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<!-- enter your key bindings into the following arrays, they are currently set 	
+  to be what the default is 						
+ the key will tell you what the following things will be for		
+ they go in the order :							
+ 	button (excluding shift/control etc.)					
+ 	control (in format <true/false> with a "/" after and <> e.g.: <true/>	
+ 	shift									
+ 	command									
+ 	option (if you have alt, make option and shift both true)			
+ they will look something like this:	
+ 				
+
+		<key>useQ</key>
+		<array>
+
+
+	/		start of use Q skill keybinding			\	
+		<string>q</string>						
+		<true/>								
+		<false/>							
+		<false/>							
+		<false/>	
+	 \              end of use Q skill keybinding 			/	
+
+
+		</array>
+								
+
+-->
+
+
+	<key>attackMove</key>
+	<array>
+
+
+
+
+<!-- NOTE: THIS IS THE NOT THE BUTTON YOU PRESS TO ATTACK MOVE THE NEXT TIME YOU CLICK, THIS IS THE BUTTON YOU PRESS TO AUTOATTACK-MOVE WITHOUT CLICKING IT IS UNBOUND BY DEFAULT YOU WILL HAVE TO BIND IT YOURSELF					-->
+<!--	 /              start of attack move click keybinding 		\	-->
+		<string>UNBOUND BY DEFAULT</string>
+		<false/>
+		<false/>
+		<false/>
+		<false/>
+<!--	 \              end of attack move click keybinding 		/	-->
+
+
+
+
+	</array>
+	<key>useQ</key>
+	<array>
+
+
+
+
+
+<!--	/		start of use Q skill keybinding			\	-->
+		<string>q</string>
+		<false/>
+		<false/>
+		<false/>
+		<false/>
+<!--	\		end of use Q skill keybinding			/	-->
+
+
+
+
+	</array>
+	<key>useW</key>
+	<array>
+
+
+
+
+
+<!--	/		start of use W skill keybinding			\	-->
+		<string>w</string>
+		<false/>
+		<false/>
+		<false/>
+		<false/>
+<!--	\		end of use W skill keybinding			/	-->
+
+
+
+
+	</array>
+	<key>useE</key>
+	<array>
+
+
+
+
+<!--	/		start of use E skill keybinding			\	-->
+		<string>e</string>
+		<false/>
+		<false/>
+		<false/>
+		<false/>
+<!--	\		end of use E skill keybinding			/	-->
+	</array>
+	<key>useR</key>
+	<array>
+
+
+
+
+
+<!--	/		start of use R skill keybinding			\	-->
+		<string>r</string>
+		<false/>
+		<false/>
+		<false/>
+		<false/>
+<!--	\		end of use R skill keybinding			/	-->
+
+
+
+
+	</array>
+	<key>levelQ</key>
+	<array>
+
+
+
+
+<!--	/		start of level up Q keybinding			\	-->
+		<string>q</string>
+		<true/>
+		<false/>
+		<false/>
+		<false/>
+<!--	\		end of level up Q keybinding			/	-->
+
+
+
+
+	</array>
+	<key>levelW</key>
+	<array>
+
+
+
+
+<!--	/		start of level up W keybinding			\	-->
+		<string>w</string>
+		<true/>
+		<false/>
+		<false/>
+		<false/>
+<!--	\		end of level up W keybinding			/	-->
+
+
+
+
+	</array>
+	<key>levelE</key>
+	<array>
+
+
+
+
+<!--	/		start of level up E keybinding			\	-->
+		<string>e</string>
+		<true/>
+		<false/>
+		<false/>
+		<false/>
+<!--	\		end of level up E keybinding			/	-->
+
+
+
+
+	</array>
+	<key>levelR</key>
+	<array>
+
+
+
+
+<!--	/		start of level up R keybinding			\	-->
+		<string>r</string>
+		<true/>
+		<false/>
+		<false/>
+		<false/>
+<!--	\		end of level up R keybinding			/	-->
+
+
+
+
+	</array>
+	<key>shop</key>
+	<array>
+
+
+
+
+<!--	/		start of open shop keybinding			\	-->
+		<string>p</string>
+		<true/>
+		<false/>
+		<false/>
+		<false/>
+<!--	\		end of open shop keybinding			/	-->
+
+
+
+
+	</array>
+</dict>
+</plist>
