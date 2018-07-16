@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Michael Xian | Home</title>
+        <script src="../../../javascript/jquery-3.3.1.min.js"> </script>
+        <link rel="shortcut icon" href="../../../assets/icons/siteIcon.png">
+        <link rel="stylesheet" href="../../../css/subpage.css">
+        <link rel="stylesheet" href="../../../css/default.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <script src="../../../javascript/highlight.pack.js"></script>
+        <script src="../../../javascript/highlightjs-line-numbers.min.js"></script>
+        <script>hljs.initHighlightingOnLoad(); hljs.initLineNumbersOnLoad();</script>
+        
+    </head>
+    
+    <body id="body">
+        <section id="header" class="center container">
+         <a href="../../../index.html" class="blue">
+        <h1 class="container-left blue">
+            Michael 
+            <br>
+            Xian
+            </h1>
+        </a>
+        <div class="container-right background-blue">
+            <a href="mailto:michaelkxian@gmail.com">
+            <div class="infoItem blue">
+                <div>
+                    <i class="fas fa-envelope icon-large color-black"></i>
+                    <p> michaelkxian@gmail.com </p>
+                </div>
+            </div>
+            </a>
+            <a href="https://github.com/MichaelXian" target="_blank">
+            <div class="infoItem blue">
+                <div>
+                    <i class="fab fa-github icon-large color-black"></i>
+                    <p>Github (MichaelXian)</p>
+                </div>
+            </div>
+            </a>
+            <a href="https://keybase.io/mkx" target="_blank">
+            <div class="infoItem blue">
+                <div>
+                    <i class="fab fa-keybase icon-large color-black"></i>
+                    <p>Keybase (mkx)</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        </section>
+        <br>
+        <br>
+        <a href="AutoLeague.zip" download><button class="brown download">Download [<i class="fas fa-download"></i>]</button></a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button id="newAutoLeague" class="file blue" onClick="toggleFile('#newAutoLeague')">New Auto-League.scpt<i class="fas fa-chevron-down"></i> <i class="fas fa-chevron-up"> </i></button> 
+        <pre id="newAutoLeagueCode" ><code class="color-black">
+    property quitReason : ""
+    property x : 0
+    property y : 0
+    property x1 : 0
+    property y1 : 0
+    property yCount : 0
+    property xCount : 0
+    property reps : 0
+    property counter : 0
+    property startTime : 0
+    property curTime : 0
+    property endTime : 999
+    property lolIsRunning : false
+    property button1 : {}
+    property button2 : {}
+    property button3 : {}
+    property button4 : {}
+    property timerOn : false
+    property quitApp : false
+    property xRatio : 0
+    property yRatio : 0
+    tell application "Extra Suites" to ES move mouse {0, 0}
+    delay 1
+    display dialog "remember to set your input.ini & persistedSettings"
+    -- setting current time
+    set startTime to do shell script "ruby -e 'print Time.now.to_f'"
+
+    -- getting screen resolution
+
+    tell application "Finder"
+        set screenRes to bounds of window of desktop
+        set screenResX to item 3 of screenRes
+        set screenResY to item 4 of screenRes
+    end tell
+
+    -- set ratios that coordinates will be multiplied to
+
+    set xRatio to screenResX / 1920
+    set yRatio to screenResY / 1080
+
+    -- use timer or not
+    set timerOn to button returned of (display dialog "Use timer?" with title "Auto-League" buttons {"Yes", "No"})
+
+    if timerOn = "Yes" then
+        askTimer()
+
+        if ((endTime ≥ 0) is false) then
+            display dialog "Error in input, please input (a) valid integer(s)" with title "Auto-League"
+            askTimer()
+        end if
+    end if
+
+    set preferredChamp to text returned of (display dialog "Preferred champion? (leave blank if no preference)" default answer "" default button 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    -- all coordinates
+    property play : {960, 190}
+    property PvP : {650, 270}
+    property bots : {650, 330}
+    property classic : {850, 300}
+    property dominion : {850, 330}
+    property summonersRift : {1040, 305}
+    property twistedTreeline : {1040, 350}
+    property summonersRiftBeginner : {1240, 330}
+    property summonersRiftIntermediate : {1240, 355}
+    property othersBeginner : {1240, 300}
+    property othersIntermediate : {1240, 330}
+    property blindPickSR : {1240, 355}
+    property blindPickOthers : {1240, 310}
+    property crystalScar : {1070, 310}
+    property solo : {1070, 860}
+    property profile : {1400, 200}
+    property ranChamp : {645, 360}
+    property lockIn : {1230, 675}
+    property accept : {873, 594}
+    property endGame : {958, 638}
+    property playAgain : {1450, 885}
+    property leaverBuster : {970, 605}
+    property networkWarning : {960, 500}
+    property reconnect : {960, 605}
+    property report : {930, 640}
+    property lvlQ : {750, 925}
+    property lvlW : {825, 925}
+    property lvlE : {890, 925}
+    property lvlR : {960, 925}
+    property closeShop : {1560, 35}
+    property search : {1250, 285}
+    property firstChamp : {715, 360}
+    property changeShop : {540, 60}
+    property secondShop : {430, 115}
+    property firstShop : {430, 95}
+    property home : {1230, 855}
+    property callRole : {1000, 890}
+    property sendMsg : {1275, 890}
+    -- end of coordinates
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    set difficulty to button returned of (display dialog "Which difficulty?" with title "Auto-League" buttons {"PvP", "Beginner", "Intermediate"})
+
+    set map to button returned of (display dialog "Which map?" with title "Auto-League" buttons {"Summoner's Rift", "Crystal Scar (less likely to be reported in PvP)", "Twisted Treeline"})
+
+    -- SETTING BUTTONS
+    -- if PvP is chosen click PvP, the rest are bots, so click co-op vs AI
+    if difficulty = "PvP" then
+        set button1 to PvP
+    else
+        set button1 to bots
+    end if
+
+    -- if crystal scar is chosen, click dominion, the rest of the maps are classic, so click classic
+    if map = "Crystal Scar (less likely to be reported in PvP)" then
+        set button2 to dominion
+    else
+        set button2 to classic
+    end if
+
+    -- if twisted treeline, click 2nd button from top, crystal scar and summoners rift are in the same spot, 1st form top, so click first button from top, but i wanted to keep the buttons seperate, so they use different variables
+    if map = "Twisted Treeline" then
+        set button3 to twistedTreeline
+    else if map = "Summoner's Rift" then
+        set button3 to summonersRift
+    else if map = "Crystal Scar (less likely to be reported in PvP)" then
+        set button3 to crystalScar
+    end if
+
+    -- pvp is only for blind pick, but buttons for SR and TT and CR are different
+    if difficulty = "PvP" then
+        if map = "Summoner's Rift" then
+            set button4 to blindPickSR
+        else
+            set button4 to blindPickOthers
+        end if
+    end if
+
+    if difficulty = "Beginner" then
+        -- different spots for different maps 
+        if map = "Summoner's Rift" then
+            set button4 to summonersRiftBeginner
+        else
+            set button4 to othersBeginner
+        end if
+    end if
+
+    if difficulty = "Intermediate" then
+        -- different spots for different maps 
+        if map = "Summoner's Rift" then
+            set button4 to summonersRiftIntermediate
+        else
+            set button4 to othersIntermediate
+        end if
+    end if
+
+
+
+
+    checkQuit()
+
+    tell application "/Applications/League of Legends.app/Contents/LoL/RADS/projects/lol_air_client/releases/0.0.0.250/deploy/bin/LolClient" to activate
+    -- joining queue
+    click(play)
+    delay 0.1
+    click(button1)
+    delay 0.1
+    click(button2)
+    delay 0.1
+    click(button3)
+    delay 0.1
+    click(button4)
+    delay 0.1
+    checkQuit()
+    click(solo)
+
+    checkQuit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    repeat
+
+
+        set counter to 0
+        checkQuit()
+        -- repeat until client is not running, or game is running
+        repeat until application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" is running or application "/Applications/League of Legends.app/Contents/LoL/RADS/projects/lol_air_client/releases/0.0.0.250/deploy/bin/LolClient" is not running
+            checkQuit()
+
+            set counter to counter + 1
+
+            if counter ≥ 250 then
+                checkQuit()
+                set counter to 0
+                click(report)
+                tell application "/Applications/League of Legends.app/Contents/LoL/RADS/projects/lol_air_client/releases/0.0.0.250/deploy/bin/LolClient" to activate
+                -- joining queue
+                click(home)
+                click(play)
+                delay 0.1
+                click(button1)
+                delay 0.1
+                click(button2)
+                delay 0.1
+                click(button3)
+                delay 0.1
+                click(button4)
+                delay 0.1
+                click(solo)
+            end if
+            tell application "/Applications/League of Legends.app/Contents/LoL/RADS/projects/lol_air_client/releases/0.0.0.250/deploy/bin/LolClient" to activate
+
+            click(reconnect)
+            set curTime to do shell script "ruby -e 'print Time.now.to_f'"
+            -- add exeption to curTime thingy so that it waits 3 mins to see if you were in champ select
+            checkQuit()
+            click(leaverBuster)
+            click(playAgain)
+            -- try to accept queue/select & lock in champion / reconnecting
+            click(profile)
+            click(accept)
+            click(ranChamp)
+            click(search)
+            try
+                delay 0.1
+                tell application "Extra Suites"
+                    activate
+                    delay 0.1
+                    click(search)
+                    ES type string preferredChamp
+                    quit
+                    delay 0.2
+                end tell
+                delay 0.2
+            end try
+            -- click(firstChamp) this is commented out and replaced with ranChamp, as if you search for a champ, the ran champ location turns into the first champ location if the word "random" does not fit the search criteria
+            click(ranChamp)
+            delay 0.1
+            click(lockIn)
+            click(callRole)
+            try
+                if map = "Summoner's Rift" then
+                    delay 0.1
+                    tell application "Extra Suites"
+                        activate
+                        delay 0.1
+                        ES type string "mid"
+                        quit
+                        delay 0.2
+                    end tell
+                    delay 0.2
+                end if
+            end try
+            click(sendMsg)
+            delay 2
+            checkQuit()
+
+
+        end repeat
+        tell application "Safari" to quit
+        -- repeat until game is closed 
+        repeat until application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" is not running
+            try
+                if application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" is running then
+                    tell application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" to activate
+                end if
+            end try
+
+            randomMove()
+            (*
+            click(lvlQ)
+            click(lvlW)
+            click(lvlE)
+            click(lvlR)
+            *)
+            clickGame(networkWarning)
+            tell application "Extra Suites"
+                delay 0.1
+                activate
+                delay 0.1
+                try
+                    tell application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" to activate
+                end try
+                -- use spells
+                ES type key "r"
+                ES type key "q"
+                ES type key "w"
+                ES type key "e"
+                ES type key "1"
+                ES type key "2"
+                ES type key "3"
+                ES type key "4"
+                ES type key "5"
+                ES type key "6"
+                ES type key "c"
+                ES type key "d"
+                ES type key "f"
+                quit
+                delay 2
+            end tell
+            randomMove()
+            tell application "Extra Suites" to ES type key "p"
+            delay 1
+            clickSingle(changeShop)
+            delay 1
+            clickGame(firstShop)
+            --click(secondShop)
+            delay 1
+            randomItem(10)
+            tell application "Extra Suites" to ES type key "p"
+            clickGame(closeShop)
+            delay 2
+
+            clickGame(endGame)
+            delay 3
+
+        end repeat
+    end repeat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    -- SUBROUTINES
+    on randomMove()
+        if reps = 10 then
+            set reps to 0
+            tell application "Extra Suites"
+                ES move mouse {xRatio * 638, 498 * yRatio}
+                delay 0.1
+                ES click mouse with double click
+                delay 0.1
+                ES click mouse with double click
+                delay 0.1
+                ES click mouse with double click
+                delay 0.1
+                ES click mouse with double click
+            end tell
+        else
+            set reps to reps + 1
+            repeat until x ≠ x1 or xCount = 10
+                set x to (random number from 1725 to 1825)
+                set xCount to xCount + 1
+            end repeat
+            if x ≠ x1 then set xCount to 0
+            if xCount = 10 then
+                set xCount to 0
+                set x to 1149
+            end if
+            repeat until y ≠ y1 or yCount = 10
+                set y to (random number from 900 to 970)
+                set yCount to yCount + 1
+            end repeat
+            if x ≠ x1 then set yCount to 0
+            if yCount = 10 then
+                set yCount to 0
+                set y to 669
+            end if
+            set x1 to x
+            set y1 to y
+        end if
+
+        aMove({x, y})
+        delay 5
+    end randomMove
+
+    on aMove(coordinate)
+        set item 1 of coordinate to ((item 1 of coordinate) * xRatio)
+        set item 2 of coordinate to ((item 2 of coordinate) * yRatio)
+
+
+        tell application "Extra Suites"
+            delay 0.1
+            activate
+            ES move mouse coordinate
+            try
+                if application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" is running then
+                    tell application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" to activate
+                end if
+            end try
+            ES click mouse
+            ES type key "a"
+            quit
+            delay 0.2
+        end tell
+
+    end aMove
+
+    on click(coordinate)
+
+        set item 1 of coordinate to ((item 1 of coordinate) * xRatio)
+        set item 2 of coordinate to ((item 2 of coordinate) * yRatio)
+        try
+            tell application "Extra Suites"
+                set coordinate2 to {"", ""}
+                set item 1 of coordinate2 to ((1000) * xRatio)
+                set item 2 of coordinate2 to ((650) * yRatio)
+                ES move mouse coordinate2
+                ES click mouse with double click
+                ES move mouse coordinate
+                ES click mouse with double click
+                quit
+            end tell
+        end try
+        delay 0.1
+        tell application "Extra Suites" to launch
+        delay 0.2
+
+        try
+            tell application "/Applications/League of Legends.app/Contents/LoL/RADS/projects/lol_air_client/releases/0.0.0.250/deploy/bin/LolClient" to activate
+        end try
+
+    end click
+
+    on clickGame(coordinate)
+        delay 0.3
+        tell application "Extra Suites" to launch
+        try
+            delay 0.1
+            tell application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" to activate
+            tell application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" to activate
+            tell application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" to activate
+        end try
+        set item 1 of coordinate to ((item 1 of coordinate) * xRatio)
+        set item 2 of coordinate to ((item 2 of coordinate) * yRatio)
+        tell application "Extra Suites"
+            delay 0.1
+            set coordinate2 to {"", ""}
+            set item 1 of coordinate2 to ((1000) * xRatio)
+            set item 2 of coordinate2 to ((650) * yRatio)
+            ES move mouse coordinate2
+            ES click mouse with double click
+            ES move mouse coordinate
+            ES click mouse with double click
+            quit
+            delay 0.2
+        end tell
+        delay 0.1
+        tell application "Extra Suites" to launch
+        delay 0.1
+    end clickGame
+
+    on clickSingle(coordinate)
+        try
+            tell application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" to activate
+        end try
+        set item 1 of coordinate to ((item 1 of coordinate) * xRatio)
+        set item 2 of coordinate to ((item 2 of coordinate) * yRatio)
+        tell application "Extra Suites"
+            set coordinate2 to {"", ""}
+            set item 1 of coordinate2 to ((1000) * xRatio)
+            set item 2 of coordinate2 to ((650) * yRatio)
+            ES move mouse coordinate2
+            ES click mouse with double click
+            ES move mouse coordinate
+            ES click mouse
+            quit
+            delay 0.3
+        end tell
+
+        tell application "Extra Suites" to launch
+    end clickSingle
+
+
+    on askTimer()
+        set endTime to 0
+        -- ask for when they want the script to quit
+        set endHours to text returned of (display dialog "How long to run in hours? (minutes will be asked in next dialogue)" default answer "" with title "Auto-League")
+        set endTime to (endTime + (endHours * 3600))
+        set endMins to text returned of (display dialog "How long to run? (minutes)" default answer "" with title "Auto-League")
+
+        set endTime to endTime + (endMins * 60) -- total seconds to run
+    end askTimer
+
+
+    on checkQuit()
+        (*	if application "Extra Suites" is not running then
+            set quitApp to true
+            set quitReason to "ES closed"
+        end if
+        *)
+        -- if the "This copy of Extra Suites is unregistered" thingy is closed, then quit
+        (*	tell application "System Events"
+            if ((exists (window 1 of process "Extra Suites")) = (false)) then
+                set quitApp to true
+                set quitReason to quitReason & " ES window 1"
+            end if
+        end tell *)
+        -- if the amount of time defined in the timer has passed, then quit
+        if timerOn = "Yes" then
+            if (curTime - startTime) ≥ endTime then
+                set quitApp to true
+                set quitReason to quitReason & " timer ended"
+            end if
+        end if
+        if quitApp = true then quit
+    end checkQuit
+
+
+
+    on quit
+        -- getting info for plist
+        set ESrunning to (application "Extra Suites" is running)
+        tell application "System Events"
+            set ESWindow1 to (exists (window 1 of process "Extra Suites"))
+        end tell
+        set timerEnd to (curTime - startTime) ≥ endTime
+        set lolClient to application "/Applications/League of Legends.app/Contents/LoL/RADS/projects/lol_air_client/releases/0.0.0.250/deploy/bin/LolClient" is running
+        set lolGame to application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.233/deploy/LeagueOfLegends.app/Contents/MacOS/LeagueofLegends" is running
+
+        set arrayNumber to 0
+        tell application "System Events"
+            set plistFile to property list file "~/Library/Application Support/Auto League/QuitReason.plist"
+            tell plistFile
+                repeat -- repeat until a new array name is found, then create new array
+                    set arrayNumber to arrayNumber + 1
+                    set arrayName to "quitNumber" & arrayNumber as string
+                    if property list item arrayName exists then
+                    else
+                        make new property list item at end with properties {kind:list, name:arrayName}
+                        exit repeat
+                    end if
+                    --display dialog arrayNumber
+                end repeat
+
+                -- 1st item of array
+
+
+                -- creating
+                make new property list item at end of property list item arrayName with properties {kind:boolean, name:"ES is running", value:ESrunning}
+
+                -- 2nd item, etc.
+
+                make new property list item at end of property list item arrayName with properties {kind:boolean, name:"ES is running", value:ESWindow1}
+
+
+                make new property list item at end of property list item arrayName with properties {kind:boolean, name:"ES is running", value:timerEnd}
+
+                make new property list item at end of property list item arrayName with properties {kind:boolean, name:"ES is running", value:timerOn}
+
+                -- value of quitApp already defined
+                make new property list item at end of property list item arrayName with properties {kind:boolean, name:"ES is running", value:quitApp}
+
+
+                make new property list item at end of property list item arrayName with properties {kind:boolean, name:"ES is running", value:lolClient}
+
+                make new property list item at end of property list item arrayName with properties {kind:boolean, name:"ES is running", value:lolGame}
+
+                make new property list item at end of property list item arrayName with properties {kind:string, name:"ES is running", value:quitReason}
+
+            end tell
+        end tell
+        try
+            do shell script "killall UserKernel"
+        end try
+        error number -128
+    end quit
+
+
+    on randomItem(repetitions)
+        repeat repetitions times
+            set thisY to random number from 150 to 710
+            set thisX to random number from 330 to 700
+            clickGame({thisX, thisY})
+        end repeat
+    end randomItem
+    (*
+    on makeReadable(array)
+        set rStringLength to 1
+        set rString to item 1 of array as string
+        if item 2 of array = false and item 3 of array = false and item 4 of array = false then
+            return rString
+        else
+
+            -- if any one of them is true, add with
+            set rString to rString & " with"
+
+            -- the string cant be more than 2 in length, so add control if it is in keybind
+            if item 2 of array is true then
+                set rString to rString & " control"
+                set rStringLength to rStringLength + 1
+            end if
+
+            -- if control is part of the keybind, and something else too, then add :and shift", else add "shift"
+            if item 3 of array is true then
+                if length of rString = 2 then
+                    set rString to rString & " and shift"
+                else
+                    set rString to rString & " shift"
+                end if
+                set rStringLength to rStringLength + 1
+            end if
+
+            -- if control is part of the keybind, and something else too, then add and command, else add command
+            if item 4 of array is true then
+                if length of rString ≥ 2 then
+                    set rString to rString & " and command"
+                else
+                    set rString to rString & " command"
+                end if
+                set rStringLength to rStringLength + 1
+            end if
+
+            -- if control is part of the keybind, and something else too, then add and option, else add option
+            if item 5 of array is true then
+                if length of rString ≥ 2 then
+                    set rString to rString & " and option"
+                else
+                    set rString to rString & " option"
+                end if
+                set rStringLength to rStringLength + 1
+            end if
+
+        end if
+
+        return rString
+    end makeReadable
+        ⁃	*)
+    </code></pre>
+        <button id="newAutoLeagueConfig" class="file blue" onClick="toggleFile('#newAutoLeagueConfig')">Config.plist (for New Auto-League)<i class="fas fa-chevron-down"></i> <i class="fas fa-chevron-up"> </i></button> 
+        <pre id="newAutoLeagueConfigCode">
+        <code>
+        &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        &lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+        &lt;plist version=&quot;1.0&quot;&gt;
+        &lt;dict&gt;
+        &lt;!-- enter your key bindings into the following arrays, they are currently set 	
+          to be what the default is 						
+         the key will tell you what the following things will be for		
+         they go in the order :							
+            button (excluding shift/control etc.)					
+            control (in format &lt;true/false&gt; with a &quot;/&quot; after and &lt;&gt; e.g.: &lt;true/&gt;	
+            shift									
+            command									
+            option (if you have alt, make option and shift both true)			
+         they will look something like this:	
+
+                &lt;key&gt;useQ&lt;/key&gt;
+                &lt;array&gt;
+            /		start of use Q skill keybinding			\
+                &lt;string&gt;q&lt;/string&gt;						
+                &lt;true/&gt;								
+                &lt;false/&gt;							
+                &lt;false/&gt;							
+                &lt;false/&gt;	
+             \              end of use Q skill keybinding 			/	
+                &lt;/array&gt;
+
+
+        --&gt;
+
+
+            &lt;key&gt;attackMove&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!-- NOTE: THIS IS THE NOT THE BUTTON YOU PRESS TO ATTACK MOVE THE NEXT TIME YOU CLICK, THIS IS THE BUTTON YOU PRESS TO AUTOATTACK-MOVE WITHOUT CLICKING IT IS UNBOUND BY DEFAULT YOU WILL HAVE TO BIND IT YOURSELF					--&gt;
+        &lt;!--	 /              start of attack move click keybinding 		\	--&gt;
+                &lt;string&gt;UNBOUND BY DEFAULT&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	 \              end of attack move click keybinding 		/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;useQ&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+
+        &lt;!--	/		start of use Q skill keybinding			\	--&gt;
+                &lt;string&gt;q&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of use Q skill keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;useW&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+
+        &lt;!--	/		start of use W skill keybinding			\	--&gt;
+                &lt;string&gt;w&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of use W skill keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;useE&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of use E skill keybinding			\	--&gt;
+                &lt;string&gt;e&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of use E skill keybinding			/	--&gt;
+            &lt;/array&gt;
+            &lt;key&gt;useR&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+
+        &lt;!--	/		start of use R skill keybinding			\	--&gt;
+                &lt;string&gt;r&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of use R skill keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;levelQ&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of level up Q keybinding			\	--&gt;
+                &lt;string&gt;q&lt;/string&gt;
+                &lt;true/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of level up Q keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;levelW&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of level up W keybinding			\	--&gt;
+                &lt;string&gt;w&lt;/string&gt;
+                &lt;true/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of level up W keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;levelE&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of level up E keybinding			\	--&gt;
+                &lt;string&gt;e&lt;/string&gt;
+                &lt;true/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of level up E keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;levelR&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of level up R keybinding			\	--&gt;
+                &lt;string&gt;r&lt;/string&gt;
+                &lt;true/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of level up R keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;shop&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of open shop keybinding			\	--&gt;
+                &lt;string&gt;p&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of open shop keybinding			/	--&gt;
+
+
+
+
+        &lt;/array&gt;
+    &lt;/dict&gt;
+    &lt;/plist&gt;
+        &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        &lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+        &lt;plist version=&quot;1.0&quot;&gt;
+        &lt;dict&gt;
+        &lt;!-- enter your key bindings into the following arrays, they are currently set 	
+          to be what the default is 						
+         the key will tell you what the following things will be for		
+         they go in the order :							
+            button (excluding shift/control etc.)					
+            control (in format &lt;true/false&gt; with a &quot;/&quot; after and &lt;&gt; e.g.: &lt;true/&gt;	
+            shift									
+            command									
+            option (if you have alt, make option and shift both true)			
+         they will look something like this:	
+
+                &lt;key&gt;useQ&lt;/key&gt;
+                &lt;array&gt;
+            /		start of use Q skill keybinding			\
+                &lt;string&gt;q&lt;/string&gt;						
+                &lt;true/&gt;								
+                &lt;false/&gt;							
+                &lt;false/&gt;							
+                &lt;false/&gt;	
+             \              end of use Q skill keybinding 			/	
+                &lt;/array&gt;
+
+
+        --&gt;
+
+
+            &lt;key&gt;attackMove&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!-- NOTE: THIS IS THE NOT THE BUTTON YOU PRESS TO ATTACK MOVE THE NEXT TIME YOU CLICK, THIS IS THE BUTTON YOU PRESS TO AUTOATTACK-MOVE WITHOUT CLICKING IT IS UNBOUND BY DEFAULT YOU WILL HAVE TO BIND IT YOURSELF					--&gt;
+        &lt;!--	 /              start of attack move click keybinding 		\	--&gt;
+                &lt;string&gt;UNBOUND BY DEFAULT&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	 \              end of attack move click keybinding 		/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;useQ&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+
+        &lt;!--	/		start of use Q skill keybinding			\	--&gt;
+                &lt;string&gt;q&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of use Q skill keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;useW&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+
+        &lt;!--	/		start of use W skill keybinding			\	--&gt;
+                &lt;string&gt;w&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of use W skill keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;useE&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of use E skill keybinding			\	--&gt;
+                &lt;string&gt;e&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of use E skill keybinding			/	--&gt;
+            &lt;/array&gt;
+            &lt;key&gt;useR&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+
+        &lt;!--	/		start of use R skill keybinding			\	--&gt;
+                &lt;string&gt;r&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of use R skill keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;levelQ&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of level up Q keybinding			\	--&gt;
+                &lt;string&gt;q&lt;/string&gt;
+                &lt;true/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of level up Q keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;levelW&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of level up W keybinding			\	--&gt;
+                &lt;string&gt;w&lt;/string&gt;
+                &lt;true/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of level up W keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;levelE&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of level up E keybinding			\	--&gt;
+                &lt;string&gt;e&lt;/string&gt;
+                &lt;true/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of level up E keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;levelR&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of level up R keybinding			\	--&gt;
+                &lt;string&gt;r&lt;/string&gt;
+                &lt;true/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of level up R keybinding			/	--&gt;
+
+
+
+
+            &lt;/array&gt;
+            &lt;key&gt;shop&lt;/key&gt;
+            &lt;array&gt;
+
+
+
+
+        &lt;!--	/		start of open shop keybinding			\	--&gt;
+                &lt;string&gt;p&lt;/string&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+                &lt;false/&gt;
+        &lt;!--	\		end of open shop keybinding			/	--&gt;
+
+
+
+
+        &lt;/array&gt;
+    &lt;/dict&gt;
+    &lt;/plist&gt;
+
+        </code>
+        </pre>
+        <button id="autoLeague" class="file blue" onClick="toggleFile('#autoLeague')">Auto-League.scpt<i class="fas fa-chevron-down"></i> <i class="fas fa-chevron-up"> </i></button> 
+        <pre id="autoLeagueCode">
+        <code>
+        &#x09;tell application "Extra Suites" to ES move mouse {0, 0}
+&#x09;delay 5
+&#x09;property x : 0
+&#x09;property y : 0
+&#x09;property x1 : 0
+&#x09;property y1 : 0
+&#x09;property yCount : 0
+&#x09;property xCount : 0
+&#x09;property reps : 0
+&#x09;property counter : 0
+&#x09;property startTime : 0
+&#x09;property curTime : 0
+&#x09;property endTime : 0
+&#x09;property lolIsRunning : false
+&#x09;property button1 : {}
+&#x09;property button2 : {}
+&#x09;property button3 : {}
+&#x09;property button4 : {}
+&#x09;property timerOn : false
+&#x09;property quitApp : false
+&#x09;property xRatio : 0
+&#x09;property yRatio : 0
+&#x09;-- setting current time
+&#x09;set startTime to do shell script "ruby -e 'print Time.now.to_f'"
+&#x09;
+&#x09;-- getting screen resolution
+&#x09;
+&#x09;tell application "Finder"
+&#x09;	set screenRes to bounds of window of desktop
+&#x09;	set screenResX to item 3 of screenRes
+&#x09;	set screenResY to item 4 of screenRes
+&#x09;end tell
+&#x09;
+&#x09;-- set ratios that coordinates will be multiplied to
+&#x09;
+&#x09;set xRatio to screenResX / 1920
+&#x09;set yRatio to screenResY / 1080
+&#x09;
+&#x09;-- use timer or not
+&#x09;set timerOn to button returned of (display dialog "Use timer?" with title "Auto-League" buttons {"Yes", "No"})
+&#x09;
+&#x09;checkQuit()
+&#x09;
+&#x09;if timerOn = "Yes" then
+&#x09;	askTimer()
+&#x09;	
+&#x09;	if ((endTime ≥ 0) is false) then
+&#x09;		display dialog "Error in input, please input a valid integer" with title "Auto-League"
+&#x09;		askTimer()
+&#x09;	end if
+&#x09;end if
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;-- all coordinates
+&#x09;property play : {960, 190}
+&#x09;property PvP : {650, 270}
+&#x09;property bots : {650, 330}
+&#x09;property classic : {850, 300}
+&#x09;property dominion : {850, 330}
+&#x09;property summonersRift : {1040, 305}
+&#x09;property twistedTreeline : {1040, 350}
+&#x09;property summonersRiftBeginner : {1240, 330}
+&#x09;property summonersRiftIntermediate : {1240, 355}
+&#x09;property othersBeginner : {1240, 300}
+&#x09;property othersIntermediate : {1240, 330}
+&#x09;property blindPickSR : {1240, 355}
+&#x09;property blindPickOthers : {1240, 310}
+&#x09;property crystalScar : {1070, 310}
+&#x09;property solo : {1070, 860}
+&#x09;property profile : {1400, 200}
+&#x09;property ranChamp : {645, 360}
+&#x09;property lockIn : {1230, 675}
+&#x09;property accept : {873, 594}
+&#x09;property endGame : {958, 638}
+&#x09;property playAgain : {1450, 885}
+&#x09;
+&#x09;-- end of coordinates
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;set difficulty to button returned of (display dialog "Which difficulty?" with title "Auto-League" buttons {"PvP", "Beginner", "Intermediate"})
+&#x09;
+&#x09;set map to button returned of (display dialog "Which map?" with title "Auto-League" buttons {"Summoner's Rift", "Crystal Scar (less likely to be reported in PvP)", "Twisted Treeline"})
+&#x09;
+&#x09;-- SETTING BUTTONS
+&#x09;-- if PvP is chosen click PvP, the rest are bots, so click co-op vs AI
+&#x09;if difficulty = "PvP" then
+&#x09;	set button1 to PvP
+&#x09;else
+&#x09;	set button1 to bots
+&#x09;end if
+&#x09;
+&#x09;-- if crystal scar is chosen, click dominion, the rest of the maps are classic, so click classic
+&#x09;if map = "Crystal Scar (less likely to be reported in PvP)" then
+&#x09;	set button2 to dominion
+&#x09;else
+&#x09;	set button2 to classic
+&#x09;end if
+&#x09;
+&#x09;-- if twisted treeline, click 2nd button from top, crystal scar and summoners rift are in the same spot, 1st form top, so click first button from top, but i wanted to keep the buttons seperate, so they use different variables
+&#x09;if map = "Twisted Treeline" then
+&#x09;	set button3 to twistedTreeline
+&#x09;else if map = "Summoner's Rift" then
+&#x09;	set button3 to summonersRift
+&#x09;else if map = "Crystal Scar (less likely to be reported in PvP)" then
+&#x09;	set button3 to crystalScar
+&#x09;end if
+&#x09;
+&#x09;-- pvp is only for blind pick, but buttons for SR and TT and CR are different
+&#x09;if difficulty = "PvP" then
+&#x09;	if map = "Summoner's Rift" then
+&#x09;		set button4 to blindPickSR
+&#x09;	else
+&#x09;		set button4 to blindPickOthers
+&#x09;	end if
+&#x09;end if
+&#x09;
+&#x09;if difficulty = "Beginner" then
+&#x09;	-- different spots for different maps 
+&#x09;	if map = "Summoner's Rift" then
+&#x09;		set button4 to summonersRiftBeginner
+&#x09;	else
+&#x09;		set button4 to othersBeginner
+&#x09;	end if
+&#x09;end if
+&#x09;
+&#x09;if difficulty = "Intermediate" then
+&#x09;	-- different spots for different maps 
+&#x09;	if map = "Summoner's Rift" then
+&#x09;		set button4 to summonersRiftIntermediate
+&#x09;	else
+&#x09;		set button4 to othersIntermediate
+&#x09;	end if
+&#x09;end if
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;checkQuit()
+&#x09;
+&#x09;tell application "/Applications/League of Legends.app/Contents/LoL/RADS/projects/lol_air_client/releases/0.0.0.197/deploy/bin/LolClient" to activate
+&#x09;-- joining queue
+&#x09;click(play)
+&#x09;delay 0.1
+&#x09;click(button1)
+&#x09;delay 0.1
+&#x09;click(button2)
+&#x09;delay 0.1
+&#x09;click(button3)
+&#x09;delay 0.1
+&#x09;click(button4)
+&#x09;delay 0.1
+&#x09;checkQuit()
+&#x09;click(solo)
+&#x09;
+&#x09;checkQuit()
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;repeat
+&#x09;	set counter to 0
+&#x09;	checkQuit()
+&#x09;	-- repeat until client is not running, or game is running
+&#x09;	repeat until application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.186/deploy/LeagueofLegends.app/Contents/MacOS/LeagueofLegends" is running or application "/Applications/League of Legends.app/Contents/LoL/RADS/projects/lol_air_client/releases/0.0.0.197/deploy/bin/LolClient" is not running
+&#x09;		checkQuit()
+&#x09;		
+&#x09;		set counter to counter + 1
+&#x09;		
+&#x09;		if counter ≥ 500 then
+&#x09;			checkQuit()
+&#x09;			set counter to 0
+&#x09;			-- click report ok button
+&#x09;			tell application "/Applications/League of Legends.app/Contents/LoL/RADS/projects/lol_air_client/releases/0.0.0.197/deploy/bin/LolClient" to activate
+&#x09;			-- joining queue
+&#x09;			click(play)
+&#x09;			delay 0.1
+&#x09;			click(button1)
+&#x09;			delay 0.1
+&#x09;			click(button2)
+&#x09;			delay 0.1
+&#x09;			click(button3)
+&#x09;			delay 0.1
+&#x09;			click(button4)
+&#x09;			delay 0.1
+&#x09;			click(solo)
+&#x09;		end if
+&#x09;		tell application "/Applications/League of Legends.app/Contents/LoL/RADS/projects/lol_air_client/releases/0.0.0.197/deploy/bin/LolClient" to activate
+&#x09;		
+&#x09;		delay 0.1
+&#x09;		-- click reconnect
+&#x09;		set curTime to do shell script "ruby -e 'print Time.now.to_f'"
+&#x09;		checkQuit()
+&#x09;		delay 0.1
+&#x09;		click(playAgain)
+&#x09;		-- try to accept queue/select & lock in champion / reconnecting
+&#x09;		delay 0.1
+&#x09;		click(profile)
+&#x09;		delay 0.1
+&#x09;		click(accept)
+&#x09;		delay 0.1
+&#x09;		click(ranChamp)
+&#x09;		delay 0.1
+&#x09;		click(lockIn)
+&#x09;		
+&#x09;		delay 5
+&#x09;		checkQuit()
+&#x09;		
+&#x09;	end repeat
+&#x09;	tell application "Safari" to quit
+&#x09;	
+&#x09;	-- repeat until game is closed 
+&#x09;	repeat until application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.186/deploy/LeagueofLegends.app/Contents/MacOS/LeagueofLegends" is not running
+&#x09;		try
+&#x09;			tell application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.186/deploy/LeagueofLegends.app/Contents/MacOS/LeagueofLegends" to activate
+&#x09;		end try
+&#x09;		
+&#x09;		randomMove()
+&#x09;		click(endGame)
+&#x09;		delay 10
+&#x09;	end repeat
+&#x09;	try
+&#x09;		tell application "/Applications/League of Legends.app/Contents/LoL/RADS/solutions/lol_game_client_sln/releases/0.0.0.186/deploy/LeagueofLegends.app/Contents/MacOS/LeagueofLegends" to quit
+&#x09;	end try
+&#x09;end repeat
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;
+&#x09;-- SUBROUTINES
+&#x09;on randomMove()
+&#x09;	if reps = 10 then
+&#x09;		set reps to 0
+&#x09;		tell application "Extra Suites"
+&#x09;			ES move mouse {xRatio * 638, 498 * yRatio}
+&#x09;			delay 0.1
+&#x09;			ES click mouse with double click
+&#x09;			delay 0.1
+&#x09;			ES click mouse with double click
+&#x09;			delay 0.1
+&#x09;			ES click mouse with double click
+&#x09;			delay 0.1
+&#x09;			ES click mouse with double click
+&#x09;		end tell
+&#x09;	else
+&#x09;		set reps to reps + 1
+&#x09;		repeat until x ≠ x1 or xCount = 10
+&#x09;			set x to (random number from 1725 to 1825)
+&#x09;			set xCount to xCount + 1
+&#x09;		end repeat
+&#x09;		if x ≠ x1 then set xCount to 0
+&#x09;		if xCount = 10 then
+&#x09;			set xCount to 0
+&#x09;			set x to 1149
+&#x09;		end if
+&#x09;		repeat until y ≠ y1 or yCount = 10
+&#x09;			set y to (random number from 900 to 970)
+&#x09;			set yCount to yCount + 1
+&#x09;		end repeat
+&#x09;		if x ≠ x1 then set yCount to 0
+&#x09;		if yCount = 10 then
+&#x09;			set yCount to 0
+&#x09;			set y to 669
+&#x09;		end if
+&#x09;		set x1 to x
+&#x09;		set y1 to y
+&#x09;	end if
+&#x09;	
+&#x09;	aMove({x, y})
+&#x09;	delay 5
+&#x09;end randomMove
+&#x09;
+&#x09;on aMove(coordinate)
+&#x09;	set item 1 of coordinate to ((item 1 of coordinate) * xRatio)
+&#x09;	set item 2 of coordinate to ((item 2 of coordinate) * yRatio)
+&#x09;	tell application "Extra Suites"
+&#x09;		ES move mouse coordinate
+&#x09;		ES click mouse
+&#x09;		ES type key "a"
+&#x09;		quit
+&#x09;	end tell
+&#x09;end aMove
+&#x09;
+&#x09;on click(coordinate)
+&#x09;	set item 1 of coordinate to ((item 1 of coordinate) * xRatio)
+&#x09;	set item 2 of coordinate to ((item 2 of coordinate) * yRatio)
+&#x09;	tell application "Extra Suites"
+&#x09;		ES move mouse coordinate
+&#x09;		ES click mouse with double click
+&#x09;		quit
+&#x09;	end tell
+&#x09;	delay 0.2
+&#x09;	tell application "Extra Suites" to activate
+&#x09;end click
+&#x09;
+&#x09;on askTimer()
+&#x09;	set endTime to 0
+&#x09;	-- ask for when they want the script to quit
+&#x09;	set endHours to text returned of (display dialog "How long to run in hours? (minutes will be asked in next dialogue)" default answer "" with title "Auto-League")
+&#x09;	set endTime to (endTime + (endHours * 3600))
+&#x09;	set endMins to text returned of (display dialog "How long to run? (minutes)" default answer "" with title "Auto-League")
+&#x09;	
+&#x09;	set endTime to endTime + (endMins * 60) -- total seconds to run
+&#x09;end askTimer
+&#x09;
+&#x09;
+&#x09;on checkQuit()
+&#x09;	if application "Extra Suites" is not running then set quitApp to true
+&#x09;	-- if the "This copy of Extra Suties is unregistered" thingy is closed, then quit
+&#x09;	tell application "System Events"
+&#x09;		if ((exists (window 1 of process "Extra Suites")) = (false)) then set quitApp to true
+&#x09;	end tell
+&#x09;	
+&#x09;	-- if the amount of time defined in the timer has passed, then quit
+&#x09;	if timerOn = "Yes" then
+&#x09;		if (curTime - startTime) ≥ endTime then
+&#x09;			set quitApp to true
+&#x09;		end if
+&#x09;	end if
+&#x09;	
+&#x09;	if quitApp = true then quit
+&#x09;end checkQuit
+&#x09;
+&#x09;
+        </code>
+        </pre>
+        <button id="autoLeagueStopper" class="file blue" onClick="toggleFile('#autoLeagueStopper')">Auto-League Stopper.scpt<i class="fas fa-chevron-down"></i> <i class="fas fa-chevron-up"> </i></button> 
+        <pre id="autoLeagueStopperCode">
+        <code>
+            tell application "Extra Suites" to quit
+        </code>
+        </pre>
+        <script>
+            $(".fa-chevron-up").hide();
+            
+            files = new Map();
+            files.set("#autoRobocraft",false);
+            
+            function toggleFile(id) {
+                files.set(id, !files.get(id));
+                var toHide = files.get(id);
+                
+                 if (toHide) {
+                    $(id + "Code").hide(500);
+                    $(id + " .fa-chevron-down").hide();
+                    $(id + " .fa-chevron-up").show();
+                } else {
+                    $(id + "Code").show(500);
+                    $(id + " .fa-chevron-down").show();
+                    $(id + " .fa-chevron-up").hide();
+                } 
+            }
+        </script>
+    </body>
+</html>
