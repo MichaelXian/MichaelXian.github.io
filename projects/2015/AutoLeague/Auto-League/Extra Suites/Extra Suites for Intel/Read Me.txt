@@ -1,1 +1,0 @@
-This is an Universal compile version of Extra Suites which works on Intel, but is unsupported. It works well for me for most functions.
