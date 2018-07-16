@@ -1574,7 +1574,10 @@
             $(".fa-chevron-up").hide();
             
             files = new Map();
-            files.set("#autoRobocraft",false);
+            files.set("#newAutoLeague",false);
+            files.set("#newAutoLeagueConfig",false);
+            files.set("#autoLeague",false);
+            files.set("#autoLeagueStopper",false);
             
             function toggleFile(id) {
                 files.set(id, !files.get(id));

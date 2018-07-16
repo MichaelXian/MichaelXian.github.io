@@ -171,8 +171,9 @@
             $(".fa-chevron-up").hide();
             
             files = new Map();
-            files.set("#autoRobocraft",false);
-            
+            files.set("#wipe",false);
+            files.set("#newWipe",false);
+            files.set("#wipeTxt",false);
             function toggleFile(id) {
                 files.set(id, !files.get(id));
                 var toHide = files.get(id);
