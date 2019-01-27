@@ -1,3 +1,4 @@
+<?php
 $slack_webhook_url = "https://hooks.slack.com/services/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";
 $icon_url = "https://cdn1.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg";
 $dog_url = "https://cdn1.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg";
@@ -11,13 +12,11 @@ $data = array(
     "channel" => $channel_id,
     "text" => $message_text,
     "icon_url" => $icon_url,
+    "parse" => "full",
+    "response_type" => "in_channel",
+    "text" => $dog_url,
     "attachments" => array(
-        "parse" => "full",
-        "response_type" => "in_channel",
-        "text" => $dog_url,
-        "attachments" => array(
-            "image_url"=> $dog_url
-        ),
+        "image_url"=> $dog_url
     ),
     "unfurl_media" => true,
     "unfurl_links" => true
