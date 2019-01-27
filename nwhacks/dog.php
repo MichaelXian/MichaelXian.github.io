@@ -3,7 +3,7 @@ $icon_url = "https://cdn1.medicalnewstoday.com/content/images/articles/322/32286
 $dog_url = "https://cdn1.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg";
 $dog_call = curl_init($dog_url);
 $dog_response = curl_exec($dog_call);
-curle_close($dog_call)
+curle_close($dog_call);
 
 
 $data = array(
@@ -18,7 +18,7 @@ $data = array(
         "attachments" => array(
             "image_url"=> $dog_url
         ),
-    )
+    ),
     "unfurl_media" => true,
     "unfurl_links" => true
 );
