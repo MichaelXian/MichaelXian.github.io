@@ -20,7 +20,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	line-height: 1;
-    
+  background: #252525;
 }
 ol, ul {
 	list-style: none;
@@ -78,17 +78,17 @@ h1 {
 .color-black {
     color: black;
 }
-.blue {
+.grey {
     color: white;
-    background-color: #0063A8;
+    background-color: #353535;
     transition: background-color 0.1s linear; /* vendorless fallback */
     -o-transition: background-color 0.1s linear; /* opera */
     -ms-transition: background-color 0.1s linear; /* IE 10 */
     -moz-transition: background-color 0.1s linear; /* Firefox */
     -webkit-transition: background-color 0.1s linear; /*safari and chrome */
 }
-.blue:hover {
-    background-color: #005491;
+.grey:hover {
+    background-color: #434343;
 }
 .brown {
     color: white;
@@ -103,11 +103,11 @@ h1 {
 .brown:hover {
     background-color: #D48D00;
 }
-.background-blue {
-    background-color: #0063A8; 
+.background-grey {
+    background-color: #2A2A2A;
 }
 .background-brown {
-    background-color: #FFB627; 
+    background-color: #FFB627;
 }
 
 .infoItem {
@@ -144,7 +144,7 @@ h1 {
     width: 80%;
 }
 .year {
-    background-color: #0073B8;
+    background-color: #2A2A2A;
     padding: 1em;
     padding-bottom: 0em;
 }
@@ -183,7 +183,7 @@ h1 {
 .skills-left i {
     float: left;
     font-size: 2em;
-    color: black;
+    color: white;
     padding-left: 0.2em;
 }
 .skills-right {
@@ -194,7 +194,7 @@ h1 {
    line-height: 2em;
 }
 .year-title {
-    color: black;
+    color: white;
     text-align: center;
 }
 #attributions {
@@ -208,7 +208,7 @@ h1 {
     margin-left: 2.5em;
 }
 .link {
-    color: blue;
+    color: grey;
     text-decoration: underline;
 }
 h2 {
@@ -226,6 +226,16 @@ h2 {
     float: right;
     height: 2em;
     width: 10%;
+    color: white;
 }
+
+.fab {
+  color: white;
+}
+
+.fas {
+  color: white;
+}
+
 
 /* */

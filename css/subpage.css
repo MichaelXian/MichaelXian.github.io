@@ -78,7 +78,7 @@ h1 {
 .color-black {
     color: black;
 }
-.blue {
+.grey {
     color: white;
     background-color: #0063A8;
     transition: background-color 0.1s linear; /* vendorless fallback */
@@ -87,7 +87,7 @@ h1 {
     -moz-transition: background-color 0.1s linear; /* Firefox */
     -webkit-transition: background-color 0.1s linear; /*safari and chrome */
 }
-.blue:hover {
+.grey:hover {
     background-color: #005491;
 }
 .brown {
@@ -103,7 +103,7 @@ h1 {
 .brown:hover {
     background-color: #D48D00;
 }
-.background-blue {
+.background-grey {
     background-color: #0063A8; 
 }
 .background-brown {

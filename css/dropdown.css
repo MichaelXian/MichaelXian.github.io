@@ -32,6 +32,7 @@
 .select-items div,.select-selected {
   color: #ffffff;
   padding: 8px 16px;
+  background-color: #434343;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
   cursor: pointer;
@@ -39,7 +40,7 @@
 /*style items (options):*/
 .select-items {
   position: absolute;
-  background-color: DodgerBlue;
+  background-color: Dodgergrey;
   top: 100%;
   left: 0;
   right: 0;
@@ -50,5 +51,5 @@
   display: none;
 }
 .select-items div:hover, .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
+ background-color: #353535;
 }
